@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 from script import get_data
 app = Flask(__name__)
 load_dotenv()
-app.secret_key = os.getenv('SECRET_KEY')
+app.secret_key = os.environ.get('SECRET_KEY')
 os.makedirs('static/images', exist_ok=True)
 @app.route('/',methods=['GET','POST'])
 def home():
