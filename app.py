@@ -7,7 +7,7 @@ load_dotenv()
 app.secret_key = os.environ.get('SECRET_KEY')
 os.makedirs('static/images', exist_ok=True)
 @app.route('/',methods=['GET','POST'])
-def home():
+def index():
     if request.method=='POST':
         img = request.files['file']
         img.save(os.path.join('static/images',img.filename))
