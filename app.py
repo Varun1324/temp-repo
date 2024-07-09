@@ -16,3 +16,6 @@ def index():
         image_url = url_for('static', filename=f'images/{img.filename}')
         return render_template('index.html',image_url=image_url,data=data)
     return render_template('index.html',image_url="https://res.cloudinary.com/durc5ydxo/image/upload/v1720244864/upload-icon_kb99jl.png")
+
+if __name__ == '__main__':
+    app.run(debug=False,host=0.0.0.0)
