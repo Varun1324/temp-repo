@@ -3,7 +3,7 @@ from PIL import Image
 from io import BytesIO
 import base64
 from dotenv import load_dotenv
-import google.generativeai as genai
+import google.generativeai
 
 load_dotenv()
 
@@ -17,7 +17,7 @@ generation_config = {
     "response_mime_type": "text/plain",
 }
 
-model = genai.GenerativeModel(model_name="gemini-1.5-flash",generation_config=generation_config)
+model = google.generativeai.GenerativeModel(model_name="gemini-1.5-flash",generation_config=generation_config)
 
 def get_data(file_storage):
     #img = PIL.Image.open(f"static/images/{img.filename}")
