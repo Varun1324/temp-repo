@@ -7,7 +7,7 @@ import google.generativeai
 
 load_dotenv()
 
-genai.configure(api_key=os.environ.get('API_KEY'))
+google.generativeai.configure(api_key=os.environ.get('API_KEY'))
 
 generation_config = {
     "temperature": 1,
