@@ -1,5 +1,7 @@
 import os
-import PIL.Image
+from PIL import Image
+from io import BytesIO
+import base64
 from dotenv import load_dotenv
 import google.generativeai as genai
 
@@ -17,8 +19,17 @@ generation_config = {
 
 model = genai.GenerativeModel(model_name="gemini-1.5-flash",generation_config=generation_config)
 
-def get_data(img):
-    img = PIL.Image.open(f"static/images/{img.filename}")
+def get_data(file_storage):
+    #img = PIL.Image.open(f"static/images/{img.filename}")
+    img = Image.open(file_storage.stream)
     response = model.generate_content(["General description about dog breed in the image, including history and origin",img],stream=True)
     response.resolve()
     return response.text
+
+def convert_image_to_base64(file_storage):
+    # Convert the FileStorage object to a PIL Image object
+    buffered = BytesIO()
+    img = Image.open(file_storage)
+    img.save(buffered, format="JPEG")
+    image_base64 = base64.b64encode(buffered.getvalue()).decode('utf-8')
+    return image_base64
